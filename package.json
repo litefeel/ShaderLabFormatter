@@ -20,26 +20,11 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:shaderlib"
+		"onLanguage:shaderlab"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"languages": [
-			{
-				"id": "shaderlib",
-				"aliases": [
-					"ShaderLab"
-				],
-				"extensions": [
-					".shader",
-					".cginc",
-					".glslinc",
-					".compute",
-					".cg",
-					".hlsl"
-				]
-			}
-		]
+		
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

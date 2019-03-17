@@ -22,7 +22,7 @@ export function activate(context: vscode.ExtensionContext) {
         return line.startsWith("//");
     }
 
-    let disposable2 = vscode.languages.registerDocumentFormattingEditProvider('shaderlib', {
+    let disposable2 = vscode.languages.registerDocumentFormattingEditProvider('shaderlab', {
 
         provideDocumentFormattingEdits(document: vscode.TextDocument, options, token) {
             // vscode.window.showInformationMessage('Hello World!');
