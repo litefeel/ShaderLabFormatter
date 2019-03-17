@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     const LEFT_BRACKET = /#if|CGPROGRAM|\{(?!})/;
     const RIGHT_BRACKET = /#endif|ENDCG|(?<!{)\}/;
-    const TEMP_LEFT_BRACKET = /#else/;
+    const TEMP_LEFT_BRACKET = /#else|#elif/;
     const INDENT_SIZE = 4;
 
     function isComment(line: string) {
