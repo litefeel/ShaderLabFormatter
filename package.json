@@ -2,20 +2,20 @@
 	"name": "shaderlabformatter",
 	"displayName": "ShaderLabFormatter",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
 	"author": {
-        "name": "LiteFeel"
-    },
+		"name": "LiteFeel"
+	},
 	"publisher": "litefeel",
 	"homepage": "https://github.com/litefeel/ShaderLabFormatter/blob/master/README.md",
 	"repository": {
-        "type": "git",
-        "url": "https://github.com/litefeel/ShaderLabFormatter"
-    },
-    "bugs": "https://github.com/litefeel/ShaderLabFormatter/issues",
+		"type": "git",
+		"url": "https://github.com/litefeel/ShaderLabFormatter"
+	},
+	"bugs": "https://github.com/litefeel/ShaderLabFormatter/issues",
 	"categories": [
 		"Other"
 	],
@@ -23,9 +23,7 @@
 		"onLanguage:shaderlab"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-		
-	},
+	"contributes": {},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
