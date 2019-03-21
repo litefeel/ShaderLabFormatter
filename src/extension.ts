@@ -13,8 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
     // console.log('Congratulations, your extension "shaderlabformatter" is now active!');
 
 
-    const LEFT_BRACKET = /#if|CGPROGRAM|\{(?!})/;
-    const RIGHT_BRACKET = /#endif|ENDCG|(?<!{)\}/;
+    const LEFT_BRACKET = /#if|\{(?!})/;
+    const RIGHT_BRACKET = /#endif|(?<!{)\}/;
     const TEMP_LEFT_BRACKET = /#else|#elif/;
     const INDENT_SIZE = 4;
 
