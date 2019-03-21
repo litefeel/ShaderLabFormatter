@@ -2,7 +2,7 @@
 	"name": "shaderlabformatter",
 	"displayName": "ShaderLabFormatter",
 	"description": "An VSCode plugin for formatting of ShaderLab",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"engines": {
 		"vscode": "^1.32.0"
 	},
@@ -17,9 +17,15 @@
 	},
 	"bugs": "https://github.com/litefeel/ShaderLabFormatter/issues",
 	"categories": [
-		"Formatters","Other", "Programming Languages"
+		"Formatters",
+		"Other",
+		"Programming Languages"
 	],
-	"keywords": ["formatter","shaderlab","unity"],
+	"keywords": [
+		"formatter",
+		"shaderlab",
+		"unity"
+	],
 	"icon": "images/icon.png",
 	"activationEvents": [
 		"onLanguage:shaderlab"
