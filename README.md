@@ -10,4 +10,8 @@ An VSCode plugin for formatting of ShaderLab
 
 ## Configuration
 
-No configuration.
+`shaderlabformatter.indentation.conditionMacro` - indentation for condition macro.
+
+The value:
+* `dont` - do not indent the condition macros
+* `indent` - indent the condition macros like bracket
