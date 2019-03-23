@@ -31,7 +31,23 @@
 		"onLanguage:shaderlab"
 	],
 	"main": "./out/extension.js",
-	"contributes": {},
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "ShaderLab Formatter",
+			"properties": {
+				"shaderlabformatter.indentation.conditionMacro": {
+					"enum": [
+						"dont",
+						"indent"
+					],
+					"type": "string",
+					"default": "indent",
+					"description": "indentation for condition macro."
+				}
+			}
+		}
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
