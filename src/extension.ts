@@ -3,6 +3,9 @@
 import * as vscode from 'vscode';
 import { print } from 'util';
 import { ProviderResult } from 'vscode';
+import { open } from 'inspector';
+import { Indent } from './indent';
+
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -16,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     const LEFT_BRACKET = /#if|\{(?!})/;
     const RIGHT_BRACKET = /#endif|(?<!{)\}/;
     const TEMP_LEFT_BRACKET = /#else|#elif/;
-    const INDENT_SIZE = 4;
+    let indentUtil: Indent = new Indent();
 
     function isComment(line: string) {
         return line.startsWith("//");
@@ -25,6 +28,9 @@ export function activate(context: vscode.ExtensionContext) {
     let disposable2 = vscode.languages.registerDocumentFormattingEditProvider('shaderlab', {
 
         provideDocumentFormattingEdits(document: vscode.TextDocument, options, token) {
+
+            indentUtil.initIndent(options.insertSpaces, options.tabSize);
+
             // vscode.window.showInformationMessage('Hello World!');
             const result: vscode.TextEdit[] = [];
             const lineCount = document.lineCount;
@@ -39,24 +45,24 @@ export function activate(context: vscode.ExtensionContext) {
                 const decreaseIndent = RIGHT_BRACKET.test(lineText);
                 const decreaseIndentOnlyOne = TEMP_LEFT_BRACKET.test(lineText);
                 if (!increaseIndent && decreaseIndent) {
-                    indent -= INDENT_SIZE;
+                    indent--;
                 }
                 if (decreaseIndentOnlyOne) {
-                    indent -= INDENT_SIZE;
+                    indent--;
                 }
 
                 var firstCharIdx = line.firstNonWhitespaceCharacterIndex;
-                if (firstCharIdx !== indent) {
+                if (!indentUtil.isIndent(lineText, firstCharIdx, indent)) {
                     var pos = new vscode.Position(lineIdx, 0);
                     result.push(vscode.TextEdit.delete(new vscode.Range(lineIdx, 0, lineIdx, firstCharIdx)));
-                    result.push(vscode.TextEdit.insert(line.range.start, " ".repeat(indent)));
+                    result.push(vscode.TextEdit.insert(line.range.start, indentUtil.getIndent(indent)));
                 }
 
                 if (increaseIndent && !decreaseIndent) {
-                    indent += INDENT_SIZE;
+                    indent++;
                 }
                 if (decreaseIndentOnlyOne) {
-                    indent += INDENT_SIZE;
+                    indent++;
                 }
             }
             return result;
