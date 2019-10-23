@@ -15,6 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
     enum MacroIndentation {
         Dont = "dont",
         Indent = "indent",
+        Normal = 'normal',
     }
 
     const MACRO_BEGIN = /^\s*#if/;
@@ -69,6 +70,9 @@ export function activate(context: vscode.ExtensionContext) {
                             } else if (macroMiddle) {
                                 nowIndent = indent - 1;
                             }
+                            break;
+                        case MacroIndentation.Normal:
+                            // do nothing
                             break;
                     }
                 }

@@ -4,6 +4,9 @@ All notable changes to the "shaderlabformatter" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### 0.4.0
+* Add the `normal` option for indent settings
+
 ### 0.3.0
 * Support indentation for Setting
 * Add configuration for shaderlabformatter.indentation.conditionMacro

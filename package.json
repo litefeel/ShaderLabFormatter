@@ -39,7 +39,8 @@
 				"shaderlabformatter.indentation.conditionMacro": {
 					"enum": [
 						"dont",
-						"indent"
+						"indent",
+						"normal"
 					],
 					"type": "string",
 					"default": "indent",
