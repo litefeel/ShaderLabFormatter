@@ -15,3 +15,4 @@ An VSCode plugin for formatting of ShaderLab
 The value:
 * `dont` - do not indent the condition macros
 * `indent` - indent the condition macros like bracket
+* `normal` - indent the condition macros like normal code
