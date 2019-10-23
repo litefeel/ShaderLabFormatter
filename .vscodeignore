@@ -8,3 +8,6 @@ vsc-extension-quickstart.md
 **/tslint.json
 **/*.map
 **/*.ts
+.github
+Untitled-1.shader
+node_modules
