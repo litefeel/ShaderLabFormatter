@@ -4,6 +4,9 @@ All notable changes to the "shaderlabformatter" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### 0.4.2
+* Add CBUFFER_START/CBUFFER_END
+
 ### 0.4.1
 * Update dependency library
 
