@@ -21,8 +21,8 @@ export function activate(context: vscode.ExtensionContext) {
     const MACRO_BEGIN = /^\s*#if/;
     const MACRO_END = /^\s*#endif/;
     const MACRO_MIDDLE = /^\s*(#else|#elif)/;
-    const BRACKET_LEFT = /\{(?!})/;
-    const BRACKET_RIGHT = /(?<!{)\}/;
+    const BRACKET_LEFT = /\{(?!})|\bCBUFFER_START\b/;
+    const BRACKET_RIGHT = /(?<!{)\}|\bCBUFFER_END\b/;
 
     let indentUtil: Indent = new Indent();
 
