@@ -2,7 +2,7 @@
 	"name": "shaderlabformatter",
 	"displayName": "ShaderLabFormatter",
 	"description": "An VSCode plugin for formatting of Unity ShaderLab",
-	"version": "0.4.4",
+	"version": "0.5.0",
 	"engines": {
 		"vscode": "^1.100.0"
 	},
