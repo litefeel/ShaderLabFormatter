@@ -4,6 +4,10 @@ All notable changes to the "shaderlabformatter" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+### 0.5.0
+* Update vscode version
+* Format Tags/Fog blocks as single line (if no comments inside)
+
 ### 0.4.3
 * Update vscode version
 

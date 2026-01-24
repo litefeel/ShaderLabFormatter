@@ -22,6 +22,52 @@ export function activate(context: vscode.ExtensionContext) {
     const MACRO_MIDDLE = /^\s*(#else|#elif)/;
     const BRACKET_LEFT = /\{(?!})|\bCBUFFER_START\b/;
     const BRACKET_RIGHT = /(?<!{)\}|\bCBUFFER_END\b/;
+    const COMMENT_PATTERN = /\/\/|\/\*/;
+
+    // Format Tags/Fog blocks as single line (if no comments inside)
+    function formatSingleLineBlocks(document: vscode.TextDocument): vscode.TextEdit[] {
+        const edits: vscode.TextEdit[] = [];
+        const text = document.getText();
+
+        // Regex to match Tags or Fog block (potentially multi-line)
+        const blockRegex = /(Tags|Fog)\s*\{([^}]*)\}/gi;
+
+        let match;
+        while ((match = blockRegex.exec(text)) !== null) {
+            const fullMatch = match[0];
+            const keyword = match[1];  // "Tags" or "Fog"
+            const content = match[2];
+
+            // Skip if contains comments
+            if (COMMENT_PATTERN.test(content)) {
+                continue;
+            }
+
+            // Skip if already on single line (no newlines)
+            if (!content.includes('\n')) {
+                continue;
+            }
+
+            // Format: join content into single line with spaces
+            const formattedContent = content
+                .split(/\s+/)
+                .filter(s => s.length > 0)
+                .join(' ');
+
+            const formattedBlock = `${keyword} { ${formattedContent} }`;
+
+            // Get position in document
+            const startPos = document.positionAt(match.index);
+            const endPos = document.positionAt(match.index + fullMatch.length);
+
+            edits.push(vscode.TextEdit.replace(
+                new vscode.Range(startPos, endPos),
+                formattedBlock
+            ));
+        }
+
+        return edits;
+    }
 
     let indentUtil: Indent = new Indent();
 
@@ -37,7 +83,12 @@ export function activate(context: vscode.ExtensionContext) {
             let config = vscode.workspace.getConfiguration("shaderlabformatter.indentation");
             let macroIndentation = config.get<MacroIndentation>("conditionMacro", MacroIndentation.Indent);
 
-            // vscode.window.showInformationMessage('Hello World!');
+            // Format Tags/Fog blocks first (merge to single line if no comments)
+            const tagsEdits = formatSingleLineBlocks(document);
+            if (tagsEdits.length > 0) {
+                return tagsEdits;
+            }
+
             const result: vscode.TextEdit[] = [];
             const lineCount = document.lineCount;
             var indent = 0;
