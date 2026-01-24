@@ -29,9 +29,9 @@ export function activate(context: vscode.ExtensionContext) {
         return line.startsWith("//");
     }
 
-    let disposable2 = vscode.languages.registerDocumentFormattingEditProvider('shaderlab', {
-
-        provideDocumentFormattingEdits(document: vscode.TextDocument, options, token) {
+    function createFormattingProvider() {
+        return {
+            provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken) {
 
             indentUtil.initIndent(options.insertSpaces, options.tabSize);
             let config = vscode.workspace.getConfiguration("shaderlabformatter.indentation");
@@ -92,9 +92,16 @@ export function activate(context: vscode.ExtensionContext) {
             }
             return result;
         }
-    });
+        };
+    }
 
-    context.subscriptions.push(disposable2);
+    // Register formatter for multiple language IDs
+    const languageIds = ['shaderlab', 'UnityShader', 'shader', 'hlsl'];
+    const disposables = languageIds.map(langId =>
+        vscode.languages.registerDocumentFormattingEditProvider(langId, createFormattingProvider())
+    );
+
+    context.subscriptions.push(...disposables);
 }
 
 // This method is called when your extension is deactivated

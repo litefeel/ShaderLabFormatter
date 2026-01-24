@@ -2,9 +2,9 @@
 	"name": "shaderlabformatter",
 	"displayName": "ShaderLabFormatter",
 	"description": "An VSCode plugin for formatting of Unity ShaderLab",
-	"version": "0.4.3",
+	"version": "0.4.4",
 	"engines": {
-		"vscode": "^1.73.0"
+		"vscode": "^1.100.0"
 	},
 	"author": {
 		"name": "LiteFeel"
@@ -28,10 +28,30 @@
 	],
 	"icon": "images/icon.png",
 	"activationEvents": [
-		"onLanguage:shaderlab"
+		"onLanguage:shader",
+		"onLanguage:hlsl"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"languages": [
+			{
+				"id": "UnityShader",
+				"extensions": [
+					".shader"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "shaderlab",
+				"aliases": [
+					"ShaderLab"
+				],
+				"extensions": [
+					".shader"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
 		"configuration": {
 			"type": "object",
 			"title": "ShaderLab Formatter",
@@ -61,7 +81,7 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.73.0",
+		"@types/vscode": "^1.100.0",
 		"@types/glob": "^8.0.0",
 		"@types/mocha": "^10.0.0",
 		"@types/node": "16.x",
