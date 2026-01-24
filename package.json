@@ -24,7 +24,10 @@
 	"keywords": [
 		"formatter",
 		"shaderlab",
-		"unity"
+		"unity",
+		"shader",
+		"hlsl",
+		"unityshader"
 	],
 	"icon": "images/icon.png",
 	"activationEvents": [
@@ -36,6 +39,10 @@
 		"languages": [
 			{
 				"id": "UnityShader",
+				"aliases": [
+					"unityshader",
+					"Unity Shader"
+				],
 				"extensions": [
 					".shader"
 				],
