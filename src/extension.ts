@@ -18,9 +18,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     enum TagsFormatMode {
-        SingleLineExceptComments = "singleLineExceptComments",
-        SingleLineExceptMultipleTags = "singleLineExceptMultipleTags",
-        MultiLine = "multiLine",
+        Singleline = "singleline",
+        Multiline = "multiline",
+        MultilineIfMultiple = "multiline-if-multiple",
     }
 
     const MACRO_BEGIN = /^\s*#if/;
@@ -133,17 +133,17 @@ export function activate(context: vscode.ExtensionContext) {
 
             let shouldBeSingleLine = false;
             switch (tagsMode) {
-                case TagsFormatMode.SingleLineExceptComments:
+                case TagsFormatMode.Singleline:
                     // No comments -> single line
                     shouldBeSingleLine = true;
                     break;
-                case TagsFormatMode.SingleLineExceptMultipleTags:
-                    // Single line only if 0 or 1 tag
-                    shouldBeSingleLine = tagCount <= 1;
-                    break;
-                case TagsFormatMode.MultiLine:
+                case TagsFormatMode.Multiline:
                     // Always multi-line
                     shouldBeSingleLine = false;
+                    break;
+                case TagsFormatMode.MultilineIfMultiple:
+                    // Single line only if 0 or 1 tag
+                    shouldBeSingleLine = tagCount <= 1;
                     break;
             }
 
@@ -187,7 +187,7 @@ export function activate(context: vscode.ExtensionContext) {
             indentUtil.initIndent(options.insertSpaces, options.tabSize);
             let config = vscode.workspace.getConfiguration("shaderlabformatter");
             let macroIndentation = config.get<MacroIndentation>("indentation.conditionMacro", MacroIndentation.Indent);
-            let tagsMode = config.get<TagsFormatMode>("tags.formatMode", TagsFormatMode.SingleLineExceptComments);
+            let tagsMode = config.get<TagsFormatMode>("tags.formatMode", TagsFormatMode.Singleline);
 
             // Format Tags/Fog blocks first based on configuration
             const tagsEdits = formatSingleLineBlocks(document, tagsMode, indentUtil);

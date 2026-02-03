@@ -21,3 +21,10 @@ The value:
 * `dont` - do not indent the condition macros
 * `indent` - indent the condition macros like bracket
 * `normal` - indent the condition macros like normal code
+
+`shaderlabformatter.tags.formatMode` - Controls how Tags blocks are formatted. Fog blocks always remain single-line.
+
+The value:
+* `singleline` - Prefer single line, only keep multi-line when comments exist in Tags block
+* `multiline` - Each tag on its own line
+* `multiline-if-multiple` - Prefer single line, keep multi-line when there are more than one tag

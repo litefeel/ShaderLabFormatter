@@ -2,7 +2,7 @@
 	"name": "shaderlabformatter",
 	"displayName": "ShaderLabFormatter",
 	"description": "An VSCode plugin for formatting of Unity ShaderLab",
-	"version": "0.6.0",
+	"version": "0.6.1",
 	"engines": {
 		"vscode": "^1.100.0"
 	},
@@ -76,16 +76,16 @@
 				"shaderlabformatter.tags.formatMode": {
 					"type": "string",
 					"enum": [
-						"singleLineExceptComments",
-						"singleLineExceptMultipleTags",
-						"multiLine"
+						"singleline",
+						"multiline",
+						"multiline-if-multiple"
 					],
 					"enumDescriptions": [
 						"Prefer single line, only keep multi-line when comments exist in Tags block",
-						"Prefer single line, keep multi-line when there are more than one tag",
-						"Each tag on its own line"
+						"Each tag on its own line",
+						"Prefer single line, keep multi-line when there are more than one tag"
 					],
-					"default": "singleLineExceptComments",
+					"default": "singleline",
 					"description": "Controls how Tags blocks are formatted. Fog blocks always remain single-line."
 				}
 			}

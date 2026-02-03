@@ -4,7 +4,7 @@ All notable changes to the "shaderlabformatter" extension will be documented in 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-### 0.6.0
+### 0.6.1
 * Add configurable Tags block formatting modes
 
 ### 0.5.0
